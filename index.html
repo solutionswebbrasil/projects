@@ -1,0 +1,781 @@
+<html><head><base href="<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoLuxe Motors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem;
+        }
+        .navbar-brand {
+            color: white !important;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* This enables the parallax effect */
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative; /* Add this for better positioning control */
+            overflow: hidden; /* Prevent any potential overflow issues */
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+            }
+        }
+        .car-card {
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+        .features-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+        .search-bar {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .price-tag {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        #floating-contact {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366; /* WhatsApp green */
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        #floating-contact:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+        }
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+        .coming-soon-img {
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            position: relative;
+        }
+        .garage-door {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, #444 25%, #333 25%, #333 50%, #444 50%, #444 75%, #333 75%);
+            background-size: 100% 20px;
+        }
+        .modal-body img {
+            max-height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .btn-success {
+            background-color: #25d366;
+            border-color: #25d366;
+        }
+        .btn-success:hover {
+            background-color: #128c7e;
+            border-color: #128c7e;
+        }
+        .modal .coming-soon-img {
+            height: 300px;
+        }
+        .typed-text {
+            min-height: 30px;
+            font-size: 1.2rem;
+            color: #e74c3c;
+        }
+        /* Additional styles for the About section */
+        .card.shadow {
+            border: none;
+            box-shadow: 0 8px 24px rgba(44, 62, 80, 0.15) !important;
+            transition: transform 0.3s ease;
+        }
+        .card.shadow:hover {
+            transform: translateY(-5px);
+        }
+        .card.shadow h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .card.shadow p {
+            color: #34495e;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-car"></i> AutoLuxe Motors</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#veiculos">Veículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#seminovos">Seminovos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>Encontre seu carro dos sonhos</h1>
+                    <p class="lead">As melhores ofertas em veículos novos e seminovos</p>
+                    <div class="typed-text"></div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="search-bar">
+                        <form id="search-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <select class="form-select" id="marca">
+                                        <option selected>Marca</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select" id="ano">
+                                        <option selected>Ano</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-danger w-100">Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section class="py-5" id="veiculos">
+        <div class="container">
+            <h2 class="text-center mb-4">Veículos em Destaque</h2>
+            <div class="row" id="vehicles-container">
+                <!-- Vehicles will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seminovos Section -->
+    <section class="py-5 bg-light" id="seminovos">
+        <div class="container">
+            <h2 class="text-center mb-4">Seminovos</h2>
+            <div class="row mb-4">
+                <div class="col-md-6 mx-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchSeminovos" placeholder="Buscar seminovos...">
+                        <button class="btn btn-primary" type="button" onclick="searchSeminovos()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="seminovos-container">
+                <!-- Seminovos will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="sobre">
+        <div class="container">
+            <h2 class="text-center mb-4">Sobre a AutoLuxe Motors</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h3>Nossa História</h3>
+                            <p>Com mais de 15 anos de experiência no mercado automotivo, a AutoLuxe Motors se destaca pela excelência em vendas de veículos novos e seminovos. Nossa missão é proporcionar a melhor experiência na compra do seu veículo.</p>
+                            <p>Contamos com uma equipe altamente qualificada e comprometida com a satisfação dos nossos clientes. Nosso showroom moderno e sofisticado oferece um ambiente acolhedor para você encontrar o carro dos seus sonhos.</p>
+                            <p>Trabalhamos com as melhores marcas do mercado e oferecemos condições especiais de financiamento, garantindo sempre o melhor negócio para nossos clientes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <svg viewBox="0 0 800 500" style="width: 100%; height: auto;">
+                        <!-- Sky background -->
+                        <rect x="0" y="0" width="800" height="500" fill="#e8f4f8"/>
+                        
+                        <!-- Sun -->
+                        <circle cx="700" y="80" r="40" fill="#f1c40f" opacity="0.8"/>
+                        
+                        <!-- Building base -->
+                        <rect x="50" y="150" width="700" height="250" fill="#2c3e50"/>
+                        
+                        <!-- Modern facade elements -->
+                        <rect x="70" y="170" width="660" height="210" fill="#34495e"/>
+                        <rect x="90" y="190" width="620" height="170" fill="#ecf0f1" opacity="0.3"/>
+                        
+                        <!-- Entrance -->
+                        <rect x="350" y="240" width="120" height="160" fill="#2c3e50"/>
+                        <rect x="360" y="250" width="100" height="150" fill="#ecf0f1" opacity="0.5"/>
+                        
+                        <!-- Logo area -->
+                        <rect x="300" y="170" width="220" height="60" fill="#e74c3c"/>
+                        <text x="410" y="210" text-anchor="middle" fill="#ffffff" font-family="Arial" font-weight="bold" font-size="24">AutoLuxe Motors</text>
+                        
+                        <!-- Display windows -->
+                        <rect x="90" y="190" width="240" height="170" fill="#ecf0f1" opacity="0.4"/>
+                        <rect x="470" y="190" width="240" height="170" fill="#ecf0f1" opacity="0.4"/>
+                        
+                        <!-- Car silhouettes in windows -->
+                        <path d="M120 320 Q200 260 300 320" stroke="#2c3e50" fill="none" stroke-width="3"/>
+                        <path d="M500 320 Q580 260 680 320" stroke="#2c3e50" fill="none" stroke-width="3"/>
+                        
+                        <!-- Ground reflection -->
+                        <rect x="50" y="400" width="700" height="30" fill="#2c3e50" opacity="0.3"/>
+                        
+                        <!-- Decorative elements -->
+                        <circle cx="410" y="380" r="5" fill="#e74c3c"/>
+                        <rect x="405" y="385" width="10" height="15" fill="#e74c3c"/>
+                        
+                        <!-- Modern lighting effects -->
+                        <circle cx="100" y="170" r="10" fill="#f1c40f" opacity="0.5"/>
+                        <circle cx="700" y="170" r="10" fill="#f1c40f" opacity="0.5"/>
+                        
+                        <!-- Animation -->
+                        <animate 
+                            attributeName="opacity"
+                            values="0.3;0.6;0.3"
+                            dur="3s"
+                            repeatCount="indefinite"
+                            begin="0s"
+                        />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5 bg-light" id="contato">
+        <div class="container">
+            <h2 class="text-center mb-4">Contato e Localização</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3>Matriz - São Paulo</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1000 - São Paulo, SP</p>
+                            <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                            <p><i class="fas fa-envelope"></i> contato@autoluxe.com</p>
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.098839432576!2d-46.65390188502164!3d-23.564611384683526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1sen!2sbr!4v1635959115459!5m2!1sen!2sbr" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Nossas Filiais</h3>
+                            <div class="accordion" id="filiais">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#filialMG">
+                                            Minas Gerais
+                                        </button>
+                                    </h2>
+                                    <div id="filialMG" class="accordion-collapse collapse show">
+                                        <div class="accordion-body">
+                                            <p><i class="fas fa-map-marker-alt"></i> Av. do Contorno, 500 - Belo Horizonte, MG</p>
+                                            <p><i class="fas fa-phone"></i> (31) 99999-9999</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filialRJ">
+                                            Rio de Janeiro
+                                        </button>
+                                    </h2>
+                                    <div id="filialRJ" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p><i class="fas fa-map-marker-alt"></i> Av. Atlântica, 2000 - Rio de Janeiro, RJ</p>
+                                            <p><i class="fas fa-phone"></i> (21) 99999-9999</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filialBA">
+                                            Bahia
+                                        </button>
+                                    </h2>
+                                    <div id="filialBA" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p><i class="fas fa-map-marker-alt"></i> Av. Oceânica, 1500 - Salvador, BA</p>
+                                            <p><i class="fas fa-phone"></i> (71) 99999-9999</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Contact Button -->
+    <a href="https://wa.me/5511978851436" id="floating-contact" target="_blank">
+        <i class="fab fa-whatsapp fa-2x"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Menu</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#inicio" class="text-light">Início</a></li>
+                        <li><a href="#veiculos" class="text-light">Veículos</a></li>
+                        <li><a href="#seminovos" class="text-light">Seminovos</a></li>
+                        <li><a href="#sobre" class="text-light">Sobre</a></li>
+                        <li><a href="#contato" class="text-light">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Políticas</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Política de Vendas</a></li>
+                        <li><a href="#" class="text-light">Política de Trocas</a></li>
+                        <li><a href="#" class="text-light">Política de Garantias</a></li>
+                        <li><a href="#" class="text-light">Segurança e LGPD</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Redes Sociais</h5>
+                    <div class="social-icons">
+                        <a href="https://facebook.com" class="text-light me-3" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="https://instagram.com" class="text-light me-3" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="https://youtube.com" class="text-light me-3" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+                        <a href="https://linkedin.com" class="text-light" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2023 AutoLuxe Motors. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <script>
+        const vehicles = [
+            {
+                name: "BMW X6 2023",
+                price: "R$ 789.900",
+                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e",
+                description: "3.0 Turbo, Automático, 340cv",
+                brand: "BMW",
+                year: "2023"
+            },
+            {
+                name: "Mercedes C300",
+                price: "R$ 399.900",
+                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8",
+                description: "2.0 Turbo, Automático, 258cv",
+                brand: "Mercedes",
+                year: "2022"
+            },
+            {
+                name: "Honda Civic",
+                price: "R$ 149.900",
+                image: "https://images.unsplash.com/photo-1590347394549-826f01222271",
+                description: "2.0 Flex, Automático, 155cv",
+                brand: "Honda",
+                year: "2023"
+            },
+            {
+                name: "Toyota Corolla",
+                price: "R$ 159.900",
+                image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb",
+                description: "2.0 Hybrid, Automático, 177cv",
+                brand: "Toyota",
+                year: "2023"
+            },
+            {
+                name: "Volkswagen Golf",
+                price: "R$ 179.900",
+                image: "https://images.unsplash.com/photo-1570303278489-041bd897a873",
+                description: "2.0 TSI, Automático, 230cv",
+                brand: "Volkswagen",
+                year: "2022"
+            },
+            {
+                name: "Hyundai HB20",
+                price: "R$ 89.900",
+                image: "https://images.unsplash.com/photo-1669215420018-098507d14861",
+                description: "1.0 Turbo, Manual, 120cv",
+                brand: "Hyundai",
+                year: "2023"
+            }
+        ];
+
+        const seminovos = [
+            {
+                name: "Fiat Argo 2021",
+                price: "R$ 62.900",
+                image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888",
+                description: "1.0 Flex, Manual, 75cv",
+                brand: "Fiat",
+                year: "2021"
+            },
+            {
+                name: "Chevrolet Onix 2020",
+                price: "R$ 58.900",
+                image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d",
+                description: "1.0 Turbo, Automático, 116cv",
+                brand: "Chevrolet",
+                year: "2020"
+            },
+            {
+                name: "Volkswagen Gol 2019",
+                price: "R$ 45.900",
+                image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d",
+                description: "1.0 Flex, Manual, 75cv",
+                brand: "Volkswagen",
+                year: "2019"
+            },
+            {
+                name: "Renault Kwid 2020",
+                price: "R$ 42.900",
+                image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537",
+                description: "1.0 Flex, Manual, 70cv",
+                brand: "Renault",
+                year: "2020"
+            },
+            {
+                name: "Toyota Corolla 2019",
+                price: "R$ 89.900",
+                image: "https://images.unsplash.com/photo-1623869675781-80aa31012c78",
+                description: "2.0 Flex, Automático, 169cv",
+                brand: "Toyota",
+                year: "2019"
+            },
+            {
+                name: "Ford Ka 2020",
+                price: "R$ 49.900",
+                image: "https://images.unsplash.com/photo-1551830820-330a71b99659",
+                description: "1.0 Flex, Manual, 85cv",
+                brand: "Ford",
+                year: "2020"
+            },
+            {
+                name: "Jeep Renegade 2019",
+                price: "R$ 79.900",
+                image: "https://images.unsplash.com/photo-1612911912304-5349ed713c37",
+                description: "1.8 Flex, Automático, 139cv",
+                brand: "Jeep",
+                year: "2019"
+            },
+            {
+                name: "Nissan Kicks 2020",
+                price: "R$ 82.900",
+                image: "https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0",
+                description: "1.6 Flex, Automático, 114cv",
+                brand: "Nissan",
+                year: "2020"
+            },
+            {
+                name: "Honda HR-V 2019",
+                price: "R$ 92.900",
+                image: "https://images.unsplash.com/photo-1633696528571-37e97d8bc61a",
+                description: "1.8 Flex, Automático, 140cv",
+                brand: "Honda",
+                year: "2019"
+            },
+            {
+                name: "Hyundai Creta 2020",
+                price: "R$ 89.900",
+                image: "https://images.unsplash.com/photo-1597007030739-6d2e7172a7e7",
+                description: "1.6 Flex, Automático, 130cv",
+                brand: "Hyundai",
+                year: "2020"
+            }
+        ];
+
+        // Function to create vehicle cards with filtering
+        function createVehicleCards(filteredVehicles = vehicles) {
+            const container = document.getElementById('vehicles-container');
+            container.innerHTML = ''; // Clear existing cards
+
+            filteredVehicles.forEach(vehicle => {
+                const imageContent = vehicle.image ? 
+                    `<img src="${vehicle.image}" class="card-img-top" alt="${vehicle.name}" style="height: 200px; object-fit: cover;">` :
+                    `<div class="coming-soon-img">
+                        <div class="garage-door"></div>
+                        <div style="position: absolute; width: 100%;">EM BREVE FOTOS</div>
+                     </div>`;
+                    
+                const card = `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card car-card">
+                            ${imageContent}
+                            <div class="price-tag">${vehicle.price}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">${vehicle.name}</h5>
+                                <p class="card-text">${vehicle.description}</p>
+                                <p class="card-text"><small class="text-muted">Ano: ${vehicle.year} | Marca: ${vehicle.brand}</small></p>
+                                <button class="btn btn-primary" onclick="showVehicleDetails('${vehicle.name}')">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        function createSeminovosCards(filteredVehicles = seminovos) {
+            const container = document.getElementById('seminovos-container');
+            container.innerHTML = ''; // Clear existing cards
+
+            filteredVehicles.forEach(vehicle => {
+                const imageContent = vehicle.image ? 
+                    `<img src="${vehicle.image}" class="card-img-top" alt="${vehicle.name}" style="height: 160px; object-fit: cover;">` :
+                    `<div class="coming-soon-img" style="height: 160px;">
+                        <div class="garage-door"></div>
+                        <div style="position: absolute; width: 100%;">EM BREVE FOTOS</div>
+                     </div>`;
+
+                const card = `
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="card car-card">
+                            ${imageContent}
+                            <div class="price-tag">${vehicle.price}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">${vehicle.name}</h5>
+                                <p class="card-text">${vehicle.description}</p>
+                                <p class="card-text"><small class="text-muted">Ano: ${vehicle.year} | Marca: ${vehicle.brand}</small></p>
+                                <button class="btn btn-primary btn-sm w-100" onclick="showVehicleDetails('${vehicle.name}')">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Enhanced search functionality
+        document.getElementById('search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selectedBrand = document.getElementById('marca').value;
+            const selectedYear = document.getElementById('ano').value;
+
+            let filteredVehicles = vehicles;
+
+            if (selectedBrand !== 'Marca') {
+                filteredVehicles = filteredVehicles.filter(vehicle => 
+                    vehicle.brand === selectedBrand
+                );
+            }
+
+            if (selectedYear !== 'Ano') {
+                filteredVehicles = filteredVehicles.filter(vehicle => 
+                    vehicle.year === selectedYear
+                );
+            }
+
+            createVehicleCards(filteredVehicles);
+
+            if (filteredVehicles.length === 0) {
+                const container = document.getElementById('vehicles-container');
+                container.innerHTML = '<div class="col-12"><div class="alert alert-info">Nenhum veículo encontrado com os critérios selecionados.</div></div>';
+            }
+        });
+
+        function searchSeminovos() {
+            const searchTerm = document.getElementById('searchSeminovos').value.toLowerCase();
+            const filteredVehicles = seminovos.filter(vehicle => 
+                vehicle.name.toLowerCase().includes(searchTerm) ||
+                vehicle.brand.toLowerCase().includes(searchTerm) ||
+                vehicle.year.includes(searchTerm)
+            );
+            createSeminovosCards(filteredVehicles);
+        }
+
+        // Populate brand and year dropdowns dynamically
+        function populateDropdowns() {
+            const brandSelect = document.getElementById('marca');
+            const yearSelect = document.getElementById('ano');
+
+            const brands = [...new Set(vehicles.map(v => v.brand))];
+            const years = [...new Set(vehicles.map(v => v.year))];
+
+            brands.forEach(brand => {
+                const option = document.createElement('option');
+                option.value = brand;
+                option.textContent = brand;
+                brandSelect.appendChild(option);
+            });
+
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
+        }
+
+        // Initialize the page
+        window.onload = function() {
+            createVehicleCards();
+            createSeminovosCards();
+            populateDropdowns();
+            let typed = new Typed('.typed-text', {
+                strings: [
+                    'Qualidade e confiança em cada negociação',
+                    'Financiamento facilitado em até 60x',
+                    'Melhor avaliação do seu usado na troca',
+                    'Atendimento personalizado e profissional'
+                ],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|'
+            });
+        };
+
+        // Function to handle vehicle details
+        function showVehicleDetails(vehicleName) {
+            const vehicle = [...vehicles, ...seminovos].find(v => v.name === vehicleName);
+            if (!vehicle) return;
+            
+            const modalContent = `
+                <div class="modal fade" id="vehicleModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">${vehicle.name}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        ${vehicle.image ? 
+                                            `<img src="${vehicle.image}" class="img-fluid rounded" alt="${vehicle.name}">` :
+                                            `<div class="coming-soon-img">
+                                                <div class="garage-door"></div>
+                                                <div style="position: absolute; width: 100%;">EM BREVE FOTOS</div>
+                                             </div>`
+                                        }
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>Ficha Técnica</h4>
+                                        <ul class="list-unstyled">
+                                            <li><strong>Marca:</strong> ${vehicle.brand}</li>
+                                            <li><strong>Modelo:</strong> ${vehicle.name}</li>
+                                            <li><strong>Ano:</strong> ${vehicle.year}</li>
+                                            <li><strong>Preço:</strong> ${vehicle.price}</li>
+                                            <li><strong>Especificações:</strong> ${vehicle.description}</li>
+                                        </ul>
+                                        <a href="https://wa.me/5511999999999?text=Olá,%20tenho%20interesse%20no%20${encodeURIComponent(vehicle.name)}" 
+                                           class="btn btn-success w-100" 
+                                           target="_blank">
+                                            <i class="fab fa-whatsapp"></i> Contatar via WhatsApp
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if present
+            const existingModal = document.getElementById('vehicleModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Add new modal to body
+            document.body.insertAdjacentHTML('beforeend', modalContent);
+
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('vehicleModal'));
+            modal.show();
+        }
+
+        // Handle floating contact button
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
